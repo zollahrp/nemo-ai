@@ -13,7 +13,7 @@ export default function LandingPage() {
       {/* <Navbar /> */}
       <main>
         <Home />
-        {/* <Steps /> */}
+        <Steps />
         {/* <Fitur /> */}
         {/* <Showcase /> */}
         {/* <FAQ /> */}
