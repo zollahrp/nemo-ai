@@ -16,7 +16,7 @@ export default function LandingPage() {
         <Steps />
         <Fitur />
         <Showcase />
-        {/* <FAQ /> */}
+        <FAQ />
         {/* <Contact /> */}
       </main>
       {/* <Footer /> */}
