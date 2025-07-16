@@ -1,6 +1,6 @@
 import Home from "@/components/landing/Home";
 import Steps from "@/components/landing/Steps";
-import Fitur from "@/components/landing/Fitur";
+import Fitur from "@/components/landing/Features";
 import Showcase from "@/components/landing/showcase";
 import FAQ from "@/components/landing/FAQ";
 import Contact from "@/components/landing/Contact";
@@ -14,7 +14,7 @@ export default function LandingPage() {
       <main>
         <Home />
         <Steps />
-        {/* <Fitur /> */}
+        <Fitur />
         {/* <Showcase /> */}
         {/* <FAQ /> */}
         {/* <Contact /> */}
