@@ -1,7 +1,7 @@
 import Home from "@/components/landing/Home";
 import Steps from "@/components/landing/Steps";
 import Fitur from "@/components/landing/Features";
-import Showcase from "@/components/landing/showcase";
+import Showcase from "@/components/landing/Showcase";
 import FAQ from "@/components/landing/FAQ";
 import Contact from "@/components/landing/Contact";
 import Navbar from "@/components/ui/Navbar";
@@ -15,7 +15,7 @@ export default function LandingPage() {
         <Home />
         <Steps />
         <Fitur />
-        {/* <Showcase /> */}
+        <Showcase />
         {/* <FAQ /> */}
         {/* <Contact /> */}
       </main>
