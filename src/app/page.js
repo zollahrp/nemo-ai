@@ -10,16 +10,16 @@ import Footer from "@/components/ui/Footer";
 export default function LandingPage() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>
         <Home />
-        <Steps />
-        <Fitur />
-        <Showcase />
-        <FAQ />
-        <Contact />
+        {/* <Steps /> */}
+        {/* <Fitur /> */}
+        {/* <Showcase /> */}
+        {/* <FAQ /> */}
+        {/* <Contact /> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
