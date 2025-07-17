@@ -11,7 +11,6 @@ export default function Home() {
         <section id="home" className="min-h-screen bg-[#FAFAFA] flex items-center font-['Poppins']">
             <div className="w-full max-w-screen-2xl mx-auto px-4 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 
-                {/* KIRI - Text */}
                 <motion.div
                     className="text-center md:text-left"
                     initial={{ opacity: 0, y: -50 }}
@@ -30,7 +29,6 @@ export default function Home() {
                     </p>
 
                     <div className="flex justify-center md:justify-start gap-4">
-                        {/* Button App Store */}
                         <motion.a
                             href="https://github.com/zollahrp/nemo-ai"
                             target="_blank"
@@ -43,7 +41,6 @@ export default function Home() {
                             <Image src={appstore} alt="App Store" className="h-12 w-auto" />
                         </motion.a>
 
-                        {/* Button Google Play */}
                         <motion.a
                             href="https://github.com/zollahrp/nemo-ai"
                             target="_blank"
@@ -58,7 +55,6 @@ export default function Home() {
                     </div>
                 </motion.div>
 
-                {/* KANAN - Mockup */}
                 <motion.div
                     className="flex justify-center md:justify-end"
                     initial={{ opacity: 0, y: 50 }}
