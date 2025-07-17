@@ -5,16 +5,20 @@ import { IconCheck } from "@tabler/icons-react"
 
 const features = [
   {
-    title: "Lorem ipsum dolor sit",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+    title: "Scanner Ikan Hias",
+    desc: "Kamu dapat scan ikan hias menggunakan kamera ponselmu dan mendapatkan informasi lengkap tentangnya termasuk apakah ada penyakit atau tidak.",
   },
   {
-    title: "Lorem ipsum dolor sit",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+    title: "Fishbot",
+    desc: "Konsultasikan masalah ikan hiasmu dengan Fishbot dan dapatkan solusi cepat.",
   },
   {
-    title: "Lorem ipsum dolor sit",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+    title: "Pengingat Perawatan",
+    desc: "Dapatkan pengingat untuk merawat ikan hias dan menjaga kebersihan akuarium kamu.",
+  },
+    {
+    title: "Ensiklopedia",
+    desc: "Akses ensiklopedia ikan hias yang lengkap dan dapatkan informasi mendalam tentang berbagai spesies ikan.",
   },
 ]
 
@@ -33,7 +37,7 @@ export default function Features() {
             alt="Fitur App"
             width={600} 
             height={600}
-            className="w-full max-w-xl"
+            className="w-full max-w-2xl"
           />
         </div>
 
