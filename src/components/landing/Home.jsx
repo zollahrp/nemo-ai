@@ -10,7 +10,6 @@ export default function Home() {
         <section className="min-h-screen bg-[#FAFAFA] flex items-center font-['Poppins']">
             <div className="w-full max-w-screen-2xl mx-auto px-4 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-                {/* Kiri */}
                 <div className="text-center md:text-left">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-800 leading-tight aos-init aos-animate">
                         Solusi Cerdas Bagi para<br />
@@ -21,14 +20,23 @@ export default function Home() {
                         dan mendapatkan tips perawatan terbaik.
                     </p>
                     <div className="flex justify-center md:justify-start gap-4">
-
-                        <Image src={appstore} alt="App Store" className="h-12 w-auto" />
-                        <Image src={googleplay} alt="Google Play" className="h-12 w-auto" />
-
+                        <a
+                            href="https://github.com/zollahrp/nemo-ai"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Image src={appstore} alt="App Store" className="h-12 w-auto" />
+                        </a>
+                        <a
+                            href="https://github.com/zollahrp/nemo-ai"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Image src={googleplay} alt="Google Play" className="h-12 w-auto" />
+                        </a>
                     </div>
                 </div>
 
-                {/* Kanan */}
                 <div className="flex justify-center md:justify-end">
                     <Image src={homemockup} alt="Home Mockup" className="w-full" priority />
                 </div>
