@@ -1,18 +1,26 @@
+"use client";
 import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
+    const scrollToSection = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <footer className="bg-white">
             <div className="max-w-screen-2xl mx-auto px-8 lg:px-20 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 text-sm text-gray-700">
                 <div>
                     <h3 className="font-bold text-base mb-4">Navigasi</h3>
                     <ul className="space-y-2">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#langkah">Langkah</a></li>
-                        <li><a href="#features">Fitur</a></li>
-                        <li><a href="#tampilan">Tampilan</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                        <li><button onClick={() => scrollToSection("home")} className="hover:underline">Home</button></li>
+                        <li><button onClick={() => scrollToSection("langkah")} className="hover:underline">Langkah</button></li>
+                        <li><button onClick={() => scrollToSection("features")} className="hover:underline">Fitur</button></li>
+                        <li><button onClick={() => scrollToSection("tampilan")} className="hover:underline">Tampilan</button></li>
+                        <li><button onClick={() => scrollToSection("faq")} className="hover:underline">FAQ</button></li>
+                        <li><button onClick={() => scrollToSection("contact")} className="hover:underline">Kontak</button></li>
                     </ul>
                 </div>
 
@@ -56,5 +64,5 @@ export default function Footer() {
                 </div>
             </div>
         </footer>
-    )
+    );
 }

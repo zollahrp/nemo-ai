@@ -48,7 +48,7 @@ export default function Contact() {
 
     return (
         <>
-            <section id="contact" className="scroll-mt-[100px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
+            <section id="contact" className="scroll-mt-[50px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

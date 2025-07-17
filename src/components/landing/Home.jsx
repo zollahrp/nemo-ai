@@ -62,7 +62,7 @@ export default function Home() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                 >
-                    <Image src={homemockup} alt="Home Mockup" className="w-full" priority />
+                    <Image src={homemockup} alt="Home Mockup"  className="w-[90%] max-w-3xl mx-auto" priority />
                 </motion.div>
             </div>
         </section>
