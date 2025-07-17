@@ -1,28 +1,28 @@
 'use client'
 
 import {
-  IconClipboardText,
-  IconCalendarTime,
-  IconChecklist,
+  IconDownload,
+  IconUserCircle,
+  IconRobot,
 } from '@tabler/icons-react'
 
 const steps = [
   {
-    icon: <IconClipboardText size={32} className="text-[#0E91E9]" />,
-    title: 'Atur Penghasilan',
-    desc: 'Masukkan penghasilan bulananmu untuk disesuaikan dengan kebutuhan gizi harian.',
+    icon: <IconDownload size={32} className="text-[#0E91E9]" />,
+    title: 'Install Aplikasi',
+    desc: 'Unduh dan pasang aplikasi Nemo.Ai dari platform pilihanmu untuk memulai petualanganmu dalam merawat ikan hias.',
   },
   {
-    icon: <IconCalendarTime size={32} className="text-[#0E91E9]" />,
-    title: 'Rencana Makan Otomatis',
-    desc: 'Dapatkan rencana makan mingguan berdasarkan anggaran dan kebutuhan gizimu.',
+    icon: <IconUserCircle size={32} className="text-[#0E91E9]" />,
+    title: 'Siapkan Profil Kamu',
+    desc: 'Buat profil dengan cepat dan mudah untuk menyesuaikan pengalamanmu di Nemo.Ai, termasuk mengelola ikan hias dan konsultasi.',
   },
   {
-    icon: <IconChecklist size={32} className="text-[#0E91E9]" />,
-    title: 'Pantau Kecukupan Gizi',
-    desc: 'Lihat ringkasan asupan nutrisi harian & tips makan sehat dalam satu aplikasi.',
+    icon: <IconRobot size={32} className="text-[#0E91E9]" />,
+    title: 'Nikmati Fiturnya',
+    desc: 'Akses berbagai fitur, mulai dari scanner hingga Fishbot dan temukan solusi cepat untuk kesehatan ikan serta panduan merawat ekosistem akuarium.',
   },
-]
+];
 
 export default function Steps() {
   return (
