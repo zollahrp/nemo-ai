@@ -1,13 +1,60 @@
 "use client";
+import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
+import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        user_name: "",
+        email: "",
+        title: "",
+        message: "",
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const result = await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+                formData,
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            );
+
+            Swal.fire({
+                icon: "success",
+                title: "Pesan Terkirim!",
+                text: "Terima kasih! Kami akan merespon dalam 3 hari kerja.",
+                confirmButtonColor: "#0E91E9"
+            });
+
+            // Reset form
+            setFormData({
+                user_name: "",
+                email: "",
+                title: "",
+                message: "",
+            });
+        } catch (error) {
+            console.error("Gagal kirim pesan:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Gagal mengirim",
+                text: "Ada masalah saat mengirim pesan. Coba lagi nanti.",
+                confirmButtonColor: "#d33"
+            });
+        }
+    };
+
     return (
         <>
-            <section
-                id="contact"
-                className="py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto"
-            >
+            <section id="contact" className="py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
                 <p className="text-[#0E91E9] font-semibold text-lg mb-2">Contact Us</p>
                 <h2 className="text-3xl font-bold mb-4">Kontak kami</h2>
                 <p className="text-gray-500 max-w-xl mb-12">
@@ -15,32 +62,49 @@ export default function Contact() {
                 </p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <form className="space-y-6 lg:col-span-2">
+                    <form onSubmit={handleSubmit} className="space-y-6 lg:col-span-2">
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">
-                                Nama
-                            </label>
+                            <label className="block mb-1 text-sm font-medium text-gray-700">Nama</label>
                             <input
                                 type="text"
+                                name="user_name"
+                                value={formData.user_name}
+                                onChange={handleChange}
+                                required
                                 className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
                             />
                         </div>
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">
-                                Email
-                            </label>
+                            <label className="block mb-1 text-sm font-medium text-gray-700">Email</label>
                             <input
                                 type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
                                 className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
                             />
                         </div>
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">
-                                Pesan
-                            </label>
-                            <textarea
+                            <label className="block mb-1 text-sm font-medium text-gray-700">Subjek</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                required
                                 className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
+                            />
+                        </div>
+                        <div>
+                            <label className="block mb-1 text-sm font-medium text-gray-700">Pesan</label>
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
                                 rows="4"
+                                required
+                                className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
                             ></textarea>
                         </div>
                         <button
@@ -53,17 +117,14 @@ export default function Contact() {
 
                     <div className="bg-[#0E91E9] text-white p-8 rounded-xl shadow-md space-y-6 self-start">
                         <h3 className="text-xl font-semibold mb-4">Informasi Kontak</h3>
-
                         <div className="flex items-center space-x-4">
                             <Mail size={28} />
                             <span>nemoai@gmail.com</span>
                         </div>
-
                         <div className="flex items-center space-x-4">
                             <Phone size={28} />
                             <span>+62 812-8932-6329</span>
                         </div>
-
                         <div className="flex items-center space-x-4">
                             <MapPin size={28} />
                             <span>
@@ -72,7 +133,6 @@ export default function Contact() {
                             </span>
                         </div>
                     </div>
-
                 </div>
             </section>
 
@@ -90,4 +150,3 @@ export default function Contact() {
         </>
     );
 }
-
