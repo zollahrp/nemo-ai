@@ -117,8 +117,8 @@ export default function Contact() {
 
                     <motion.div
                         className="bg-[#0E91E9] text-white p-8 rounded-xl shadow-md space-y-6 self-start"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                         viewport={{ once: true }}
                     >

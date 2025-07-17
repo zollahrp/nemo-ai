@@ -97,7 +97,6 @@ export default function Showcase() {
             </div>
           ))}
 
-          {/* Arrows */}
           <button
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md cursor-pointer"
@@ -112,7 +111,6 @@ export default function Showcase() {
           </button>
         </div>
 
-        {/* Bullet */}
         <div className="flex justify-center gap-2 mt-6">
           {images.map((_, idx) => (
             <span

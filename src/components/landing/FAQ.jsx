@@ -77,8 +77,8 @@ export default function FAQ() {
 
         <motion.div
           variants={{
-            hidden: { opacity: 0, x: 50 },
-            visible: { opacity: 1, x: 0 },
+            hidden: { opacity: 0, y: 50 },
+            visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 0.6 }}
           className="md:col-span-2 flex flex-col items-center text-center"
