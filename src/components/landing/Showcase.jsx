@@ -51,15 +51,13 @@ export default function Showcase() {
       <div className="max-w-screen-xl mx-auto py-20 px-8 lg:px-20 text-center">
         <h2 className="text-sm font-semibold text-[#0E91E9] uppercase mb-2">Showcase</h2>
         <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-          Lihat Tampilan <br /> Antarmuka Nemo.AI
+          Lihat Tampilan <br /> Antarmuka Nemo.Ai
         </h3>
         <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et ,
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          Gak perlu ribet lagi! Semua fitur keren Nemo.Ai dikemas dalam tampilan yang simpel dan interaktif. Yuk lihat sendiri, seberapa mudahnya menjadi aquascaper modern!
         </p>
 
-        {/* Carousel */}
-        <div className="relative flex items-center justify-center h-[550px]">
+        <div className="relative flex items-center justify-center h-[590px]">
           {images.map((src, index) => (
             <div
               key={index}

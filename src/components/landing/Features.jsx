@@ -16,9 +16,9 @@ const features = [
     title: "Pengingat Perawatan",
     desc: "Dapatkan pengingat untuk merawat ikan hias dan menjaga kebersihan akuarium kamu.",
   },
-    {
+  {
     title: "Ensiklopedia",
-    desc: "Akses ensiklopedia ikan hias yang lengkap dan dapatkan informasi mendalam tentang berbagai spesies ikan.",
+    desc: "Dapatkan pengingat untuk merawat ikan hias dan menjaga kebersihan akuarium kamu.",
   },
 ]
 
@@ -35,7 +35,7 @@ export default function Features() {
           <Image
             src="/img/fitur.png"
             alt="Fitur App"
-            width={600} 
+            width={600}
             height={600}
             className="w-full max-w-2xl"
           />
@@ -48,8 +48,8 @@ export default function Features() {
               className="border rounded-tl-xl rounded-tr-xl rounded-bl-xl rounded-br-[4rem] p-6 shadow-sm bg-white"
             >
               <div className="flex items-start gap-4">
-                <div className="bg-[#E0F2FE] w-8 h-8 flex items-center justify-center rounded-full mt-1">
-                  <IconCheck size={20} className="text-[#0E91E9]" />
+                <div className="bg-[#E0F2FE] w-6 h-6 flex items-center justify-center rounded-full">
+                  <IconCheck size={18} className="text-[#0E91E9]" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">{fitur.title}</h3>
