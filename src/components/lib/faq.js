@@ -1,19 +1,19 @@
 const faqs = [
   {
-    question: 'What is Nemo.Ai?',
-    answer: 'Nemo.Ai is a smart aquarium assistant that helps detect diseases, manage ecosystems, and offer the best care tips.'
+    question: 'Apa itu Nemo.Ai?',
+    answer: 'Nemo.Ai adalah asisten pintar buat akuarium kamu. Bisa bantu deteksi penyakit ikan, atur ekosistem, sampai kasih tips perawatan yang pas, sesuai tagline kami yaitu Solusi Cerdas Bagi para pecinta Ikan Hias'
   },
   {
-    question: 'How to use the Nemo.Ai app?',
-    answer: 'Just download the app, scan your aquarium, and Nemo.Ai will guide you through personalized care steps.'
+    question: 'Gimana cara pakai aplikasi Nemo.Ai?',
+    answer: 'Cukup download aplikasinya, siapkan profil kamu, dan nikmati fiturnya.'
   },
   {
-    question: 'Is Nemo.Ai free to use?',
-    answer: 'Yes, Nemo.Ai offers core features for free. Premium plans are available for advanced insights.'
+    question: 'Apakah Nemo.Ai gratis?',
+    answer: 'Yup, fitur-fitur utama bisa dipakai gratis! Kalau butuh insight yang lebih dalam, ada juga opsi premium.'
   },
   {
-    question: 'Can I integrate Nemo.Ai with smart devices?',
-    answer: 'Yes, Nemo.Ai can connect with various IoT devices to monitor and maintain your aquarium more effectively.'
+    question: 'Bisa disambungin ke perangkat pintar nggak?',
+    answer: 'Bisa banget! Nemo.Ai bisa terhubung ke berbagai perangkat IoT buat bantu monitor dan rawat akuariummu secara otomatis.'
   }
 ]
 

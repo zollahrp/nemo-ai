@@ -14,12 +14,12 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-20 bg-white">
-      <div className="max-w-screen-xl mx-auto px-8 lg:px-20 grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
+      <div className="max-w-screen-2xl mx-auto px-8 lg:px-20 grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
         
         <div className="md:col-span-3">
           <h4 className="text-sm font-semibold text-[#0E91E9] uppercase mb-2">FAQ</h4>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-10">
-            Frequently <br /> Asked Questions
+            Pertanyaan <br /> yang Sering Diajukan
           </h2>
 
           <div className="flex flex-col gap-4">
