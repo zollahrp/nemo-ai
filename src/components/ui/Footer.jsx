@@ -8,10 +8,11 @@ export default function Footer() {
                     <h3 className="font-bold text-base mb-4">Navigasi</h3>
                     <ul className="space-y-2">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#langkah">Langkah</a></li>
                         <li><a href="#features">Fitur</a></li>
-                        <li><a href="#review">Review</a></li>
-                        <li><a href="#contact">Kontak Kami</a></li>
+                        <li><a href="#tampilan">Tampilan</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Kontak</a></li>
                     </ul>
                 </div>
 
@@ -30,10 +31,10 @@ export default function Footer() {
                     <ul className="space-y-2">
                         <li>nemoai@gmail.com</li>
                         <li>+62 12345678</li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
+                        <li><a href="https://www.instagram.com/zollahrp">Facebook</a></li>
+                        <li><a href="https://www.linkedin.com/in/zolla/">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/zollahrp">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/zollahrp">Instagram</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,10 +49,10 @@ export default function Footer() {
                 </div>
 
                 <div className="flex gap-4 mt-4 sm:mt-0 text-gray-600">
-                    <a href="#"><FaFacebookF /></a>
-                    <a href="#"><FaLinkedinIn /></a>
-                    <a href="#"><FaTwitter /></a>
-                    <a href="#"><FaInstagram /></a>
+                    <a href="https://www.instagram.com/zollahrp"><FaFacebookF /></a>
+                    <a href="https://www.linkedin.com/in/zolla/"><FaLinkedinIn /></a>
+                    <a href="https://www.instagram.com/zollahrp"><FaTwitter /></a>
+                    <a href="https://www.instagram.com/zollahrp"><FaInstagram /></a>
                 </div>
             </div>
         </footer>

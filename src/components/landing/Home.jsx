@@ -7,7 +7,7 @@ import homemockup from "/public/img/home-mockup.png";
 
 export default function Home() {
     return (
-        <section className="min-h-screen bg-[#FAFAFA] flex items-center font-['Poppins']">
+        <section id="home" className="min-h-screen bg-[#FAFAFA] flex items-center font-['Poppins']">
             <div className="w-full max-w-screen-2xl mx-auto px-4 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
                 <div className="text-center md:text-left">

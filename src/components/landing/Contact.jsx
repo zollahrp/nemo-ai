@@ -142,8 +142,13 @@ export default function Contact() {
                         Download Aplikasi Nemo.Ai untuk iOS & Android
                     </p>
                     <div className="flex gap-4">
-                        <img src="/img/google-play.png" alt="Google Play" className="h-12 w-auto" />
-                        <img src="/img/app-store.png" alt="App Store" className="h-12 w-auto" />
+                        <a href="https://github.com/zollahrp/nemo-ai" target="_blank" rel="noopener noreferrer">
+                            <img src="/img/google-play.png" alt="Google Play" className="h-12 w-auto" />
+                        </a>
+                        <a href="https://github.com/zollahrp/nemo-ai" target="_blank" rel="noopener noreferrer">
+                            <img src="/img/app-store.png" alt="App Store" className="h-12 w-auto" />
+                        </a>
+
                     </div>
                 </div>
             </section>

@@ -27,7 +27,7 @@ const steps = [
 export default function Steps() {
   return (
     <section
-      id="steps"
+      id="langkah"
       className="py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto bg-[#FFFFFF]"
     >
       <div className="mb-12">

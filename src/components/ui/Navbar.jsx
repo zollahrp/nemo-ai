@@ -21,12 +21,10 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-8 lg:px-20 py-0">
-        {/* Logo */}
         <div className="flex items-center">
           <img src="/img/logo.png" alt="Logo" className="h-20 w-auto" />
         </div>
 
-        {/* Nav Menu */}
         <nav className="hidden md:flex items-center gap-10 text-lg font-semibold text-gray-800">
           <a href="#home" className="hover:text-[#0E91E9]">Home</a>
           <a href="#langkah" className="hover:text-[#0E91E9]">Langkah</a>
