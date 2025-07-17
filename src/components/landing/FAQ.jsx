@@ -62,9 +62,9 @@ export default function FAQ() {
             height={300}
             className="mb-6"
           />
-          <h3 className="text-xl font-bold text-[#0E91E9] mb-1">Any Question?</h3>
+          <h3 className="text-xl font-bold text-[#0E91E9] mb-1">Ada Pertanyaan?</h3>
           <p className="text-gray-600 text-sm max-w-xs">
-            You can ask anything you want to know about Nemo.Ai
+            Silakan tanyakan apa saja yang ingin kamu ketahui tentang Nemo.Ai
           </p>
         </div>
       </div>
