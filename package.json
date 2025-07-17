@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@lottiefiles/dotlottie-react": "^0.14.3",
     "@tabler/icons-react": "^3.34.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.6",
