@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -18,7 +19,6 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const result = await emailjs.send(
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
@@ -34,13 +34,7 @@ export default function Contact() {
                 confirmButtonColor: "#0E91E9"
             });
 
-            // Reset form
-            setFormData({
-                user_name: "",
-                email: "",
-                title: "",
-                message: "",
-            });
+            setFormData({ user_name: "", email: "", title: "", message: "" });
         } catch (error) {
             console.error("Gagal kirim pesan:", error);
             Swal.fire({
@@ -55,67 +49,79 @@ export default function Contact() {
     return (
         <>
             <section id="contact" className="scroll-mt-[100px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
-                <p className="text-[#0E91E9] font-semibold text-lg mb-2">Contact Us</p>
-                <h2 className="text-3xl font-bold mb-4">Kontak kami</h2>
-                <p className="text-gray-500 max-w-xl mb-12">
-                    Punya pertanyaan, ide, atau ada masalah lain? Kirim pesan ke kami, tim Nemo.Ai siap bantu kamu kapan aja!
-                </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                >
+                    <p className="text-[#0E91E9] font-semibold text-lg mb-2">Contact Us</p>
+                    <h2 className="text-3xl font-bold mb-4">Kontak kami</h2>
+                    <p className="text-gray-500 max-w-xl mb-12">
+                        Punya pertanyaan, ide, atau ada masalah lain? Kirim pesan ke kami, tim Nemo.Ai siap bantu kamu kapan aja!
+                    </p>
+                </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <form onSubmit={handleSubmit} className="space-y-6 lg:col-span-2">
-                        <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Nama</label>
-                            <input
-                                type="text"
-                                name="user_name"
-                                value={formData.user_name}
-                                onChange={handleChange}
-                                required
-                                className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Subjek</label>
-                            <input
-                                type="text"
-                                name="title"
-                                value={formData.title}
-                                onChange={handleChange}
-                                required
-                                className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-1 text-sm font-medium text-gray-700">Pesan</label>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows="4"
-                                required
-                                className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
-                            ></textarea>
-                        </div>
-                        <button
+                    <motion.form
+                        onSubmit={handleSubmit}
+                        className="space-y-6 lg:col-span-2"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                        viewport={{ once: true }}
+                    >
+                        {["Nama", "Email", "Subjek", "Pesan"].map((label, i) => {
+                            const name = ["user_name", "email", "title", "message"][i];
+                            const isTextarea = name === "message";
+                            return (
+                                <motion.div key={name}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.4, delay: 0.1 * i }}
+                                    viewport={{ once: true }}
+                                >
+                                    <label className="block mb-1 text-sm font-medium text-gray-700">{label}</label>
+                                    {isTextarea ? (
+                                        <textarea
+                                            name={name}
+                                            value={formData[name]}
+                                            onChange={handleChange}
+                                            rows="4"
+                                            required
+                                            className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
+                                        ></textarea>
+                                    ) : (
+                                        <input
+                                            type={name === "email" ? "email" : "text"}
+                                            name={name}
+                                            value={formData[name]}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full border-b border-gray-400 focus:outline-none focus:border-[#0E91E9] py-2"
+                                        />
+                                    )}
+                                </motion.div>
+                            );
+                        })}
+                        <motion.button
                             type="submit"
+                            whileTap={{ scale: 0.95 }}
+                            whileHover={{ scale: 1.03 }}
+                            transition={{ type: "spring", stiffness: 200 }}
                             className="bg-[#0E91E9] hover:bg-[#0C7BC5] text-white font-semibold py-2 px-6 rounded-xl shadow-md"
                         >
                             Kirim
-                        </button>
-                    </form>
+                        </motion.button>
+                    </motion.form>
 
-                    <div className="bg-[#0E91E9] text-white p-8 rounded-xl shadow-md space-y-6 self-start">
+                    <motion.div
+                        className="bg-[#0E91E9] text-white p-8 rounded-xl shadow-md space-y-6 self-start"
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        viewport={{ once: true }}
+                    >
                         <h3 className="text-xl font-semibold mb-4">Informasi Kontak</h3>
                         <div className="flex items-center space-x-4">
                             <Mail size={28} />
@@ -132,26 +138,54 @@ export default function Contact() {
                                 Kec. Bogor Tengah, Kota Bogor, Jawa Barat 16128
                             </span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
-            <section className="w-full bg-gradient-to-r from-[#32B1F3] to-[#0279D4] mt-0 overflow-hidden">
+            <motion.section
+                className="w-full bg-gradient-to-r from-[#32B1F3] to-[#0279D4] mt-0 overflow-hidden"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+            >
                 <div className="mx-auto w-full max-w-screen-2xl px-4 py-6 flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <p className="text-white text-lg font-semibold text-center lg:text-left">
+                    <motion.p
+                        className="text-white text-lg font-semibold text-center lg:text-left"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
+                    >
                         Download Aplikasi Nemo.Ai untuk iOS & Android
-                    </p>
+                    </motion.p>
                     <div className="flex gap-4">
-                        <a href="https://github.com/zollahrp/nemo-ai" target="_blank" rel="noopener noreferrer">
+                        <motion.a
+                            href="https://github.com/zollahrp/nemo-ai"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ type: "spring", stiffness: 300, duration: 0.5 }}
+                            viewport={{ once: true }}
+                        >
                             <img src="/img/google-play.png" alt="Google Play" className="h-12 w-auto" />
-                        </a>
-                        <a href="https://github.com/zollahrp/nemo-ai" target="_blank" rel="noopener noreferrer">
-                            <img src="/img/app-store.png" alt="App Store" className="h-12 w-auto" />
-                        </a>
+                        </motion.a>
 
+                        <motion.a
+                            href="https://github.com/zollahrp/nemo-ai"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ type: "spring", stiffness: 300, duration: 0.5, delay: 0.2 }}
+                            viewport={{ once: true }}
+                        >
+                            <img src="/img/app-store.png" alt="App Store" className="h-12 w-auto" />
+                        </motion.a>
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </>
     );
 }
