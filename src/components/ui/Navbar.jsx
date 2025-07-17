@@ -24,20 +24,18 @@ export default function Navbar() {
 
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
-                ? "backdrop-blur-md bg-white/70 shadow-md"
-                : "bg-transparent"
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || isMenuOpen
+                    ? "backdrop-blur-md bg-white/70 shadow-md"
+                    : "bg-transparent"
                 }`}
         >
             <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-6 lg:px-20 py-4">
-                {/* Logo */}
                 <div className="flex items-center">
                     <a href="/">
                         <img src="/img/logo.png" alt="Logo" className="h-16 w-auto cursor-pointer" />
                     </a>
                 </div>
 
-                {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-10 text-lg font-semibold text-gray-800">
                     <button onClick={() => scrollToSection("home")} className="hover:text-[#0E91E9]">Home</button>
                     <button onClick={() => scrollToSection("langkah")} className="hover:text-[#0E91E9]">Langkah</button>
@@ -47,7 +45,6 @@ export default function Navbar() {
                     <button onClick={() => scrollToSection("contact")} className="hover:text-[#0E91E9]">Kontak</button>
                 </nav>
 
-                {/* Hamburger Menu (Mobile) */}
                 <button
                     className="md:hidden text-3xl text-gray-800"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -57,7 +54,6 @@ export default function Navbar() {
                 </button>
             </div>
 
-            {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className="md:hidden bg-white shadow-md rounded-b-xl py-4 px-6 text-gray-800 font-semibold">
                     <ul className="space-y-4">
