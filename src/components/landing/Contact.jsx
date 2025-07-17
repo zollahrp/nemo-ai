@@ -54,7 +54,7 @@ export default function Contact() {
 
     return (
         <>
-            <section id="contact" className="py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
+            <section id="contact" className="scroll-mt-[100px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
                 <p className="text-[#0E91E9] font-semibold text-lg mb-2">Contact Us</p>
                 <h2 className="text-3xl font-bold mb-4">Kontak kami</h2>
                 <p className="text-gray-500 max-w-xl mb-12">

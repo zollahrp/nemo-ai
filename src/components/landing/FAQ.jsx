@@ -13,7 +13,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="scroll-mt-[200px] py-20 bg-white">
       <div className="max-w-screen-2xl mx-auto px-8 lg:px-20 grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
         
         <div className="md:col-span-3">

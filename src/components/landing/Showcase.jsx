@@ -47,7 +47,7 @@ export default function Showcase() {
   }
 
   return (
-    <section id="tampilan" className="bg-[#FAFAFA]">
+    <section id="tampilan" className="scroll-mt-[30px] bg-[#FAFAFA]">
       <div className="max-w-screen-xl mx-auto py-20 px-8 lg:px-20 text-center">
         <h2 className="text-sm font-semibold text-[#0E91E9] uppercase mb-2">Showcase</h2>
         <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">

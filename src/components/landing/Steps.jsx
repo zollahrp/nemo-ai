@@ -28,7 +28,7 @@ export default function Steps() {
   return (
     <section
       id="langkah"
-      className="py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto bg-[#FFFFFF]"
+      className="scroll-mt-[200px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto bg-[#FFFFFF]"
     >
       <div className="mb-12">
         <p className="text-sm font-semibold text-[#0E91E9] mb-1">Steps</p>

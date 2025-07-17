@@ -24,7 +24,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
+    <section id="features" className="scroll-mt-[90px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
       <p className="text-[#0E91E9] font-semibold text-lg mb-2">Features</p>
       <h2 className="text-3xl sm:text-4xl font-bold text-black mb-12 leading-snug">
         Fitur Keren yang <br /> Membuat Nemo.Ai Berbeda!
