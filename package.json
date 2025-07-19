@@ -11,7 +11,11 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@lottiefiles/dotlottie-react": "^0.14.3",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.52.0",
     "@tabler/icons-react": "^3.34.0",
+    "cookie": "^1.0.2",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.6",
     "icons-react": "^3.7.1",
@@ -20,7 +24,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
-    "sweetalert2": "^11.22.2"
+    "sweetalert2": "^11.22.2",
+    "sweetalert2-react-content": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
