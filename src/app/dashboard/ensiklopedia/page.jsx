@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
+import Swal from 'sweetalert2'
+import {
+  IconEye,
+  IconPencil,
+  IconTrash,
+} from '@tabler/icons-react'
+
 
 export default function EnsiklopediaPage() {
   const [data, setData] = useState([])
@@ -52,7 +59,7 @@ export default function EnsiklopediaPage() {
   }, [currentPage])
 
   const uploadImage = async () => {
-    if (!imageFile) return form.gambar_url // skip kalau gak ada file baru
+    if (!imageFile) return form.gambar_url
     const fileExt = imageFile.name.split('.').pop()
     const fileName = `${Date.now()}.${fileExt}`
     const { data, error } = await supabase.storage
@@ -98,9 +105,21 @@ export default function EnsiklopediaPage() {
   }
 
   const handleDelete = async (id) => {
-    if (confirm('Yakin ingin hapus data ini?')) {
+    const result = await Swal.fire({
+      title: 'Yakin ingin menghapus?',
+      text: 'Data ikan akan dihapus secara permanen!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    })
+
+    if (result.isConfirmed) {
       await supabase.from('ikan').delete().eq('id', id)
       fetchData()
+      Swal.fire('Terhapus!', 'Data ikan berhasil dihapus.', 'success')
     }
   }
 
@@ -129,44 +148,100 @@ export default function EnsiklopediaPage() {
             setImageFile(null)
             setModalOpen(true)
           }}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg shadow hover:bg-blue-700 transition duration-200"
         >
-          + Tambah Ikan
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          Tambah Ikan
         </button>
+
       </div>
 
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="overflow-x-auto border rounded-lg">
+        <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
           <table className="w-full text-sm text-left">
-            <thead className="bg-gray-100">
+            <thead className="bg-gray-100 text-gray-700">
               <tr>
                 <th className="px-4 py-2">Nama</th>
                 <th className="px-4 py-2">Ilmiah</th>
+                <th className="px-4 py-2">Kategori</th>
+                <th className="px-4 py-2">Deskripsi</th>
                 <th className="px-4 py-2">Gambar</th>
                 <th className="px-4 py-2">Suhu</th>
-                <th className="px-4 py-2">pH</th>
                 <th className="px-4 py-2">Jenis</th>
+                <th className="px-4 py-2">pH</th>
+                <th className="px-4 py-2">Oksigen</th>
+                <th className="px-4 py-2">Ukuran</th>
+                <th className="px-4 py-2">Umur</th>
+                <th className="px-4 py-2">Asal</th>
+                <th className="px-4 py-2">Dibuat</th>
                 <th className="px-4 py-2">Aksi</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-gray-800">
               {data.map((ikan) => (
-                <tr key={ikan.id} className="border-t">
+                <tr key={ikan.id} className="border-t hover:bg-gray-50 transition">
                   <td className="px-4 py-2">{ikan.nama}</td>
                   <td className="px-4 py-2 italic">{ikan.nama_ilmiah}</td>
+                  <td className="px-4 py-2">{ikan.kategori}</td>
+                  <td className="px-4 py-2">{ikan.deskripsi?.slice(0, 60)}...</td>
                   <td className="px-4 py-2">
                     {ikan.gambar_url && (
-                      <img src={ikan.gambar_url} alt={ikan.nama} className="w-14 h-14 object-cover rounded" />
+                      <img
+                        src={ikan.gambar_url}
+                        alt={ikan.nama}
+                        className="w-14 h-14 object-cover rounded"
+                      />
                     )}
                   </td>
                   <td className="px-4 py-2">{ikan.suhu}</td>
-                  <td className="px-4 py-2">{ikan.ph}</td>
                   <td className="px-4 py-2">{ikan.jenis}</td>
-                  <td className="px-4 py-2 space-x-2">
-                    <button onClick={() => openEditModal(ikan)} className="text-blue-600 hover:underline">Edit</button>
-                    <button onClick={() => handleDelete(ikan.id)} className="text-red-600 hover:underline">Hapus</button>
+                  <td className="px-4 py-2">{ikan.ph}</td>
+                  <td className="px-4 py-2">{ikan.oksigen}</td>
+                  <td className="px-4 py-2">{ikan.ukuran}</td>
+                  <td className="px-4 py-2">{ikan.umur}</td>
+                  <td className="px-4 py-2">{ikan.asal}</td>
+                  <td className="px-4 py-2">
+                    {new Date(ikan.created_at).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-2">
+                    <div className="flex gap-2 items-center">
+                      <a
+                        href={`/dashboard/ensiklopedia/detail/${ikan.id}`}
+                        className="text-green-600 hover:text-green-800"
+                        title="Lihat"
+                      >
+                        <IconEye size={20} />
+                      </a>
+                      <button
+                        onClick={() => openEditModal(ikan)}
+                        className="text-blue-600 hover:text-blue-800"
+                        title="Edit"
+                      >
+                        <IconPencil size={20} />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(ikan.id)}
+                        className="text-red-600 hover:text-red-800"
+                        title="Hapus"
+                      >
+                        <IconTrash size={20} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -174,21 +249,28 @@ export default function EnsiklopediaPage() {
           </table>
 
           {/* Pagination */}
-          <div className="flex justify-end gap-2 p-4">
-            <button
-              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-              disabled={currentPage === 1}
-              className="px-3 py-1 border rounded"
-            >
-              Prev
-            </button>
-            <span className="px-3 py-1">Hal. {currentPage}</span>
-            <button
-              onClick={() => setCurrentPage((p) => p + 1)}
-              className="px-3 py-1 border rounded"
-            >
-              Next
-            </button>
+          <div className="flex justify-between items-center px-4 py-3 border-t bg-gray-50 text-sm text-gray-600">
+            <div>
+              Menampilkan {Math.min((currentPage - 1) * pageSize + 1, data.length)} -{' '}
+              {Math.min(currentPage * pageSize, data.length)} dari {data.length}
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                disabled={currentPage === 1}
+                className="px-3 py-1 border rounded disabled:opacity-50"
+              >
+                Prev
+              </button>
+              <button className="px-3 py-1 border rounded bg-blue-100">1</button>
+              <button className="px-3 py-1 border rounded">2</button>
+              <button
+                onClick={() => setCurrentPage((p) => p + 1)}
+                className="px-3 py-1 border rounded"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -201,21 +283,162 @@ export default function EnsiklopediaPage() {
               {editItem ? 'Edit Ikan' : 'Tambah Ikan'}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-3">
-              <input type="text" placeholder="Nama" value={form.nama} onChange={(e) => setForm({ ...form, nama: e.target.value })} className="w-full border px-3 py-2 rounded" required />
-              <input type="text" placeholder="Nama Ilmiah" value={form.nama_ilmiah} onChange={(e) => setForm({ ...form, nama_ilmiah: e.target.value })} className="w-full border px-3 py-2 rounded" />
-              <textarea placeholder="Deskripsi" value={form.deskripsi} onChange={(e) => setForm({ ...form, deskripsi: e.target.value })} className="w-full border px-3 py-2 rounded" />
-              <input type="text" placeholder="Suhu" value={form.suhu} onChange={(e) => setForm({ ...form, suhu: e.target.value })} className="w-full border px-3 py-2 rounded" />
-              <input type="text" placeholder="pH" value={form.ph} onChange={(e) => setForm({ ...form, ph: e.target.value })} className="w-full border px-3 py-2 rounded" />
-              <select value={form.jenis} onChange={(e) => setForm({ ...form, jenis: e.target.value })} className="w-full border px-3 py-2 rounded">
-                <option value="">-- Pilih Jenis --</option>
+              <input
+                type="text"
+                placeholder="Nama"
+                value={form.nama}
+                onChange={(e) => setForm({ ...form, nama: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+                required
+              />
+
+              <input
+                type="text"
+                placeholder="Nama Ilmiah"
+                value={form.nama_ilmiah}
+                onChange={(e) => setForm({ ...form, nama_ilmiah: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              {/* Dropdown kategori */}
+              <select
+                value={form.kategori}
+                onChange={(e) => setForm({ ...form, kategori: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              >
+                <option value="">-- Pilih Kategori --</option>
                 {kategoriList.map((kat) => (
-                  <option key={kat} value={kat}>{kat}</option>
+                  <option key={kat} value={kat}>
+                    {kat}
+                  </option>
                 ))}
               </select>
-              <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} className="w-full border px-3 py-2 rounded" />
-              <div className="flex justify-end gap-3">
-                <button type="button" onClick={() => setModalOpen(false)} className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Batal</button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Simpan</button>
+
+              <input
+                type="text"
+                placeholder="Suhu"
+                value={form.suhu}
+                onChange={(e) => setForm({ ...form, suhu: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              <input
+                type="text"
+                placeholder="Jenis"
+                value={form.jenis}
+                onChange={(e) => setForm({ ...form, jenis: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              <input
+                type="text"
+                placeholder="pH"
+                value={form.ph}
+                onChange={(e) => setForm({ ...form, ph: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              <input
+                type="text"
+                placeholder="Oksigen"
+                value={form.oksigen}
+                onChange={(e) => setForm({ ...form, oksigen: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              <input
+                type="text"
+                placeholder="Ukuran"
+                value={form.ukuran}
+                onChange={(e) => setForm({ ...form, ukuran: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              <input
+                type="text"
+                placeholder="Umur"
+                value={form.umur}
+                onChange={(e) => setForm({ ...form, umur: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              <input
+                type="text"
+                placeholder="Asal"
+                value={form.asal}
+                onChange={(e) => setForm({ ...form, asal: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              {/* Deskripsi */}
+              <textarea
+                placeholder="Deskripsi"
+                value={form.deskripsi}
+                onChange={(e) => setForm({ ...form, deskripsi: e.target.value })}
+                className="w-full border px-3 py-2 rounded"
+              />
+
+              {/* Upload Gambar dengan desain modern dan presisi */}
+              <div className="w-full">
+                <label
+                  htmlFor="upload"
+                  className="relative flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex flex-col items-center justify-center gap-2 text-gray-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-10 h-10"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3 15a4 4 0 014-4h1m4 0h1a4 4 0 014 4v2a4 4 0 01-4 4H7a4 4 0 01-4-4v-2z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 12V3m0 0l3 3m-3-3L9 6"
+                      />
+                    </svg>
+                    <p className="text-sm">
+                      <span className="font-medium text-blue-600">Klik untuk unggah</span>{' '}
+                      atau tarik gambar ke sini
+                    </p>
+                    {imageFile && (
+                      <p className="text-xs text-green-600 mt-1 truncate max-w-xs">
+                        {imageFile.name}
+                      </p>
+                    )}
+                  </div>
+                  <input
+                    id="upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  />
+                </label>
+              </div>
+
+              {/* Tombol Simpan / Batal */}
+              <div className="flex justify-end gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(false)}
+                  className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  Simpan
+                </button>
               </div>
             </form>
           </div>
