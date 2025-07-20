@@ -16,6 +16,7 @@ export default function EnsiklopediaPage() {
   const [modalOpen, setModalOpen] = useState(false)
   const [editItem, setEditItem] = useState(null)
   const [imageFile, setImageFile] = useState(null)
+  const [filterKategori, setFilterKategori] = useState('')
 
   const [form, setForm] = useState({
     nama: '',
@@ -25,6 +26,11 @@ export default function EnsiklopediaPage() {
     suhu: '',
     jenis: '',
     ph: '',
+    oksigen: '',
+    ukuran: '',
+    umur: '',
+    asal: '',
+    kategori: '',
   })
 
   const kategoriList = [
@@ -49,6 +55,7 @@ export default function EnsiklopediaPage() {
       .select('*')
       .order('created_at', { ascending: false })
       .range(from, to)
+      .ilike('kategori', filterKategori ? `%${filterKategori}%` : '%')
 
     if (!error) setData(data)
     setLoading(false)
@@ -56,7 +63,7 @@ export default function EnsiklopediaPage() {
 
   useEffect(() => {
     fetchData()
-  }, [currentPage])
+  }, [currentPage, filterKategori])
 
   const uploadImage = async () => {
     if (!imageFile) return form.gambar_url
@@ -83,25 +90,47 @@ export default function EnsiklopediaPage() {
     const imageUrl = await uploadImage()
     const payload = { ...form, gambar_url: imageUrl }
 
+    let response
     if (editItem) {
-      await supabase.from('ikan').update(payload).eq('id', editItem.id)
+      response = await supabase.from('ikan').update(payload).eq('id', editItem.id)
     } else {
-      await supabase.from('ikan').insert([payload])
+      response = await supabase.from('ikan').insert([payload])
     }
 
-    setModalOpen(false)
-    setEditItem(null)
-    setForm({
-      nama: '',
-      nama_ilmiah: '',
-      gambar_url: '',
-      deskripsi: '',
-      suhu: '',
-      jenis: '',
-      ph: '',
-    })
-    setImageFile(null)
-    fetchData()
+    if (!response.error) {
+      Swal.fire({
+        title: 'Berhasil!',
+        text: editItem ? 'Data ikan berhasil diperbarui.' : 'Data ikan berhasil disimpan.',
+        icon: 'success',
+        confirmButtonText: 'Oke',
+      })
+
+      setModalOpen(false)
+      setEditItem(null)
+      setForm({
+        nama: '',
+        nama_ilmiah: '',
+        gambar_url: '',
+        deskripsi: '',
+        suhu: '',
+        jenis: '',
+        ph: '',
+        oksigen: '',
+        ukuran: '',
+        umur: '',
+        asal: '',
+        kategori: '',
+      })
+      setImageFile(null)
+      fetchData()
+    } else {
+      Swal.fire({
+        title: 'Gagal!',
+        text: response.error.message || 'Terjadi kesalahan saat menyimpan data.',
+        icon: 'error',
+        confirmButtonText: 'Tutup',
+      })
+    }
   }
 
   const handleDelete = async (id) => {
@@ -131,8 +160,45 @@ export default function EnsiklopediaPage() {
 
   return (
     <div className="p-6">
+      <h1 className="text-2xl font-semibold mb-4">Ensiklopedia Ikan</h1>
+
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold">Ensiklopedia Ikan</h1>
+        <div className="flex items-center gap-3 bg-white border border-gray-300 px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 019 21v-7.586L3.293 6.707A1 1 0 013 6V4z"
+            />
+          </svg>
+          <label htmlFor="filter" className="text-sm font-medium text-gray-700">
+            Kategori:
+          </label>
+          <select
+            id="filter"
+            value={filterKategori}
+            onChange={(e) => {
+              setCurrentPage(1)
+              setFilterKategori(e.target.value)
+            }}
+            className="text-sm border-none bg-transparent focus:outline-none focus:ring-0"
+          >
+            <option value="">Semua</option>
+            {kategoriList.map((kat) => (
+              <option key={kat} value={kat}>
+                {kat}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <button
           onClick={() => {
             setEditItem(null)
@@ -166,7 +232,6 @@ export default function EnsiklopediaPage() {
           </svg>
           Tambah Ikan
         </button>
-
       </div>
 
       {loading ? (
@@ -341,7 +406,7 @@ export default function EnsiklopediaPage() {
               <input
                 type="text"
                 placeholder="Oksigen"
-                value={form.oksigen}
+                value={form.oksigen ?? ''}
                 onChange={(e) => setForm({ ...form, oksigen: e.target.value })}
                 className="w-full border px-3 py-2 rounded"
               />
@@ -349,7 +414,7 @@ export default function EnsiklopediaPage() {
               <input
                 type="text"
                 placeholder="Ukuran"
-                value={form.ukuran}
+                value={form.ukuran ?? ''}
                 onChange={(e) => setForm({ ...form, ukuran: e.target.value })}
                 className="w-full border px-3 py-2 rounded"
               />
@@ -357,7 +422,7 @@ export default function EnsiklopediaPage() {
               <input
                 type="text"
                 placeholder="Umur"
-                value={form.umur}
+                value={form.umur ?? ''}
                 onChange={(e) => setForm({ ...form, umur: e.target.value })}
                 className="w-full border px-3 py-2 rounded"
               />
@@ -365,7 +430,7 @@ export default function EnsiklopediaPage() {
               <input
                 type="text"
                 placeholder="Asal"
-                value={form.asal}
+                value={form.asal ?? ''}
                 onChange={(e) => setForm({ ...form, asal: e.target.value })}
                 className="w-full border px-3 py-2 rounded"
               />
