@@ -35,11 +35,11 @@ export default function Sidebar() {
       href: '/dashboard/penyakit',
       icon: <FiActivity size={18} />,
     },
-    {
-      name: 'Fishbot',
-      href: '/dashboard/chat',
-      icon: <FiMessageCircle size={18} />,
-    },
+    // {
+    //   name: 'Fishbot',
+    //   href: '/dashboard/chat',
+    //   icon: <FiMessageCircle size={18} />,
+    // },
     {
       name: 'User',
       href: '/dashboard/user',
