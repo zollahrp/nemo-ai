@@ -31,11 +31,6 @@ export default function Sidebar() {
       icon: <FiBookOpen size={18} />,
     },
     {
-      name: 'Machine Learning',
-      href: '/dashboard/ml',
-      icon: <FiCpu size={18} />,
-    },
-    {
       name: 'Penyakit',
       href: '/dashboard/penyakit',
       icon: <FiActivity size={18} />,
@@ -44,6 +39,11 @@ export default function Sidebar() {
       name: 'Fishbot',
       href: '/dashboard/chat',
       icon: <FiMessageCircle size={18} />,
+    },
+    {
+      name: 'User',
+      href: '/dashboard/user',
+      icon: <FiCpu size={18} />,
     },
   ]
 

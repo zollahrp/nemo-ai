@@ -17,6 +17,7 @@ export default function EnsiklopediaPage() {
   const [editItem, setEditItem] = useState(null)
   const [imageFile, setImageFile] = useState(null)
   const [filterKategori, setFilterKategori] = useState('')
+  const [totalCount, setTotalCount] = useState(0)
 
   const [form, setForm] = useState({
     nama: '',
@@ -50,14 +51,15 @@ export default function EnsiklopediaPage() {
     const from = (currentPage - 1) * pageSize
     const to = from + pageSize - 1
 
-    const { data, error } = await supabase
+    const { data, error, count } = await supabase
       .from('ikan')
-      .select('*')
+      .select('*', { count: 'exact' })
       .order('created_at', { ascending: false })
       .range(from, to)
       .ilike('kategori', filterKategori ? `%${filterKategori}%` : '%')
 
     if (!error) setData(data)
+    setTotalCount(count)
     setLoading(false)
   }
 
@@ -317,7 +319,7 @@ export default function EnsiklopediaPage() {
           <div className="flex justify-between items-center px-4 py-3 border-t bg-gray-50 text-sm text-gray-600">
             <div>
               Menampilkan {Math.min((currentPage - 1) * pageSize + 1, data.length)} -{' '}
-              {Math.min(currentPage * pageSize, data.length)} dari {data.length}
+              {Math.min(currentPage * pageSize, totalCount)} dari {totalCount}
             </div>
             <div className="flex gap-2">
               <button
@@ -327,8 +329,18 @@ export default function EnsiklopediaPage() {
               >
                 Prev
               </button>
-              <button className="px-3 py-1 border rounded bg-blue-100">1</button>
-              <button className="px-3 py-1 border rounded">2</button>
+              {Array.from({ length: Math.ceil(totalCount / pageSize) }).map((_, idx) => {
+                const page = idx + 1
+                return (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-1 border rounded ${currentPage === page ? 'bg-blue-600 text-white' : ''}`}
+                  >
+                    {page}
+                  </button>
+                )
+              })}
               <button
                 onClick={() => setCurrentPage((p) => p + 1)}
                 className="px-3 py-1 border rounded"
