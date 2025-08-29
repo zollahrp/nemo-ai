@@ -25,7 +25,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="scroll-mt-[90px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
+    <section id="features" className=" bg-white scroll-mt-[90px] py-20 px-8 lg:px-20 max-w-screen-2xl mx-auto">
       <motion.p
         className="text-[#0E91E9] font-semibold text-lg mb-2"
         initial={{ opacity: 0, y: 20 }}
