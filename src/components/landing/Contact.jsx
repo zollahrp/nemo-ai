@@ -56,7 +56,7 @@ export default function Contact() {
                     viewport={{ once: true }}
                 >
                     <p className="text-[#0E91E9] font-semibold text-lg mb-2">Contact Us</p>
-                    <h2 className="text-3xl font-bold mb-4">Kontak kami</h2>
+                    <h2 className="text-3xl font-bold mb-4 text-black">Kontak kami</h2>
                     <p className="text-gray-500 max-w-xl mb-12">
                         Punya pertanyaan, ide, atau ada masalah lain? Kirim pesan ke kami, tim Nemo.Ai siap bantu kamu kapan aja!
                     </p>
