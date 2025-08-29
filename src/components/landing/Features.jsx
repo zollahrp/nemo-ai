@@ -78,7 +78,7 @@ export default function Features() {
                   <IconCheck size={18} className="text-[#0E91E9]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-1">{fitur.title}</h3>
+                  <h3 className="font-semibold text-lg mb-1 text-black">{fitur.title}</h3>
                   <p className="text-sm text-gray-700">{fitur.desc}</p>
                 </div>
               </div>

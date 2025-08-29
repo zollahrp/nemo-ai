@@ -60,7 +60,7 @@ export default function Steps() {
             <div className="bg-[#E0F2FE] w-12 h-12 flex items-center justify-center rounded-full mb-4">
               {step.icon}
             </div>
-            <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
+            <h3 className="font-semibold text-lg mb-2 text-black">{step.title}</h3>
             <p className="text-sm text-gray-700 leading-relaxed">{step.desc}</p>
           </motion.div>
         ))}
